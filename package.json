@@ -1,0 +1,9 @@
+{
+  "name": "sauat",
+  "private": true,
+  "description": "Sauat — AI reading-literacy trainer for grades 7–9 that works offline. Órleu Hack 2026.",
+  "scripts": { "dev": "node scripts/dev.js" },
+  "engines": { "node": ">=20" },
+  "dependencies": { "@neondatabase/serverless": "^1.0.0" },
+  "devDependencies": { "@electric-sql/pglite": "^0.3.0" }
+}

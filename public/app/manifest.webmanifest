@@ -1,0 +1,12 @@
+{
+ "name": "Sauat — оқып, түсінуге үйрет",
+ "short_name": "Sauat",
+ "description": "7–9 сыныптарға арналған функционалдық сауаттылық тренажёры. Интернетсіз жұмыс істейді.",
+ "start_url": "/app/#/home",
+ "scope": "/app/",
+ "display": "standalone",
+ "background_color": "#f6f4ef",
+ "theme_color": "#0f5b4f",
+ "lang": "kk",
+ "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}
