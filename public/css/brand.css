@@ -1,0 +1,17 @@
+/* Sauat brand: школьная тетрадь — синие чернила, жёлтый маркер, красная линия полей. */
+@import url('/css/fonts.css');
+:root {
+  --paper: #fdfdfb; --rule: #dfe6f3; --margin: #e5484d; --ink: #18275e; --ink-2: #2340a8; --text: #1e2333; --soft: #5b6275;
+  --marker: #ffe14d; --marker-deep: #f5c400; --green: #0e8a6a; --plum: #a1307a;
+  --locate: #2340a8; --interpret: #0e8a6a; --evaluate: #a1307a;
+  --display: 'Unbounded', 'Golos Text', system-ui, sans-serif; --body: 'Golos Text', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --line: 28px;
+}
+.ruled { background-color: var(--paper); background-image: linear-gradient(transparent calc(var(--line) - 1px), var(--rule) calc(var(--line) - 1px)); background-size: 100% var(--line); }
+.squared { background-color: #fbfcfe; background-image: linear-gradient(#e9eef8 1px, transparent 1px), linear-gradient(90deg, #e9eef8 1px, transparent 1px); background-size: 22px 22px; }
+.mark { background-image: linear-gradient(100deg, transparent 0 2%, var(--marker) 3% 97%, transparent 98%); background-repeat: no-repeat; background-size: 100% 78%; background-position: 0 70%; border-radius: 2px; }
+@keyframes sweep { from { background-size: 0% 78%; } to { background-size: 100% 78%; } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes pop { 0% { transform: scale(.6); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; } }
+:focus-visible { outline: 3px solid var(--ink-2); outline-offset: 2px; }

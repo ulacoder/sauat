@@ -61,7 +61,7 @@
   const L = (o) => (o && (o[S.lang] || o.kk || o.ru)) || '';
   const $ = (s) => document.querySelector(s);
   const root = $('#root');
-  const logo = '<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#14705f"/><path d="M7 10.5c3-1.4 6-1.4 9 0v12c-3-1.4-6-1.4-9 0z" fill="#e9f3f0"/><path d="M25 10.5c-3-1.4-6-1.4-9 0v12c3-1.4 6-1.4 9 0z" fill="#fff"/><circle cx="22.5" cy="8" r="3" fill="#e2a03f"/></svg>';
+  const logo = '<svg viewBox="0 0 32 32"><rect width="32" height="32" rx="9" fill="#18275e"/><path d="M7 10.5c3-1.4 6-1.4 9 0v12c-3-1.4-6-1.4-9 0z" fill="#dfe6f3"/><path d="M25 10.5c-3-1.4-6-1.4-9 0v12c3-1.4 6-1.4 9 0z" fill="#fff"/><rect x="18" y="14" width="5" height="3" rx="1" fill="#ffe14d"/></svg>';
   const toast = (m) => { const d = document.createElement('div'); d.className = 'toast'; d.textContent = m; document.body.appendChild(d); setTimeout(() => d.remove(), 2600); };
   const lvCls = (v) => 'lv lv' + Math.max(1, Math.min(4, Math.floor(v)));
   const lv = (v) => `<span class="${lvCls(v)}">${v.toFixed(1)}</span>`;
@@ -80,9 +80,9 @@
   function viewLogin() {
     root.innerHTML = `<div class="center"><div class="login">
       <div class="card hero"><a class="brand" href="/" style="padding:0">${logo}Sauat</a>
-        <p class="small" style="letter-spacing:2px;text-transform:uppercase;color:#e2a03f;margin-top:18px">${t('heroEy')}</p>
+        <p class="small" style="color:#ffe14d;font-weight:600;margin-top:18px">${t('heroEy')}</p>
         <h1>${t('heroH')}</h1><p>${t('heroP')}</p>
-        <p style="margin-top:22px"><button class="btn big" id="demo" style="background:#e2a03f;color:#1d2422">▶ ${t('demo')}</button></p>
+        <p style="margin-top:22px"><button class="btn big" id="demo" style="background:#ffe14d;color:#18275e;border-color:#ffe14d">▶ ${t('demo')}</button></p>
         <p class="small">${t('demoSub')}</p>
         <p class="small" style="margin-top:18px"><a href="#" id="lg" style="color:#fff">${S.lang === 'ru' ? 'Қазақша' : 'Русский'}</a> · <a href="/app/" style="color:#fff">${t('studentApp')} →</a></p></div>
       <div class="grid">
@@ -108,7 +108,7 @@
     };
   }
   async function addClass(c) {
-    root.innerHTML = '<div class="center"><span class="spin" style="width:32px;height:32px;color:#0f5b4f"></span></div>';
+    root.innerHTML = '<div class="center"><span class="spin" style="width:32px;height:32px;color:#18275e"></span></div>';
     try {
       S.cur = c.code; await load(c);
       const list = S.classes.filter((x) => x.code !== c.code); list.unshift({ code: c.code, key: c.key, name: S.data.class.name, fresh: c.fresh });
@@ -127,8 +127,8 @@
       <a class="brand" href="/">${logo}Sauat</a>
       <select id="sw">${S.classes.map((c) => `<option value="${esc(c.code)}" ${c.code === S.cur ? 'selected' : ''}>${esc(c.name)} · ${esc(c.code)}</option>`).join('')}<option value="+">+ ${t('newClass')}</option></select>
       <nav class="nav">${NAV.map(([k, i]) => `<button data-tab="${k}" class="${S.tab === k ? 'on' : ''}">${i} ${t(k)}</button>`).join('')}</nav>
-      <div class="foot"><button id="lg">${S.lang === 'ru' ? 'Қазақша' : 'Русский'}</button><a href="/app/" style="color:#cfe0db">${t('studentApp')} →</a>
-      <span>${d.class.demo ? `<b style="color:#e2a03f">${t('demoBadge')}</b> · ` : ''}${esc(d.class.school || '')}</span></div></aside>
+      <div class="foot"><button id="lg">${S.lang === 'ru' ? 'Қазақша' : 'Русский'}</button><a href="/app/" style="color:#dfe5fa">${t('studentApp')} →</a>
+      <span>${d.class.demo ? `<b style="color:#ffe14d">${t('demoBadge')}</b> · ` : ''}${esc(d.class.school || '')}</span></div></aside>
       <main class="main">${inner}</main></div>`;
     root.querySelectorAll('[data-tab]').forEach((b) => (b.onclick = () => { S.tab = b.dataset.tab; render(); window.scrollTo(0, 0); }));
     $('#sw').onchange = (e) => { if (e.target.value === '+') { S.cur = null; LS.set('cur', null); return render(); } S.insights = null; addClass(S.classes.find((c) => c.code === e.target.value)); };
@@ -140,17 +140,17 @@
   function lineChart(weeks) {
     const W = 560, H = 210, P = 34; const n = weeks.length;
     const x = (i) => P + (i * (W - P * 2)) / (n - 1); const y = (v) => H - P - ((v - 1) / 3) * (H - P * 2);
-    const col = { locate: '#2f6db5', interpret: '#8a4fb8', evaluate: '#c46a1c' };
+    const col = { locate: '#2340a8', interpret: '#0e8a6a', evaluate: '#a1307a' };
     let g = '';
-    for (let v = 1; v <= 4; v++) g += `<line x1="${P}" x2="${W - P}" y1="${y(v)}" y2="${y(v)}" stroke="#ece9e2"/><text x="6" y="${y(v) + 4}" font-size="11" fill="#8a948f">${v}</text>`;
-    g += `<line x1="${P}" x2="${W - P}" y1="${y(2)}" y2="${y(2)}" stroke="#e2a03f" stroke-dasharray="4 4"/><text x="${W - P - 4}" y="${y(2) - 6}" font-size="11" fill="#b77a1c" text-anchor="end">PISA 2</text>`;
+    for (let v = 1; v <= 4; v++) g += `<line x1="${P}" x2="${W - P}" y1="${y(v)}" y2="${y(v)}" stroke="#e4e9f4"/><text x="6" y="${y(v) + 4}" font-size="11" fill="#7c859c">${v}</text>`;
+    g += `<line x1="${P}" x2="${W - P}" y1="${y(2)}" y2="${y(2)}" stroke="#e5484d" stroke-dasharray="5 5"/><text x="${W - P - 4}" y="${y(2) - 6}" font-size="11" fill="#c33a3f" text-anchor="end">PISA 2</text>`;
     for (const k of SK) {
       const pts = weeks.map((w, i) => (w[k] == null ? null : [x(i), y(w[k])])).filter(Boolean);
       if (!pts.length) continue;
-      g += `<polyline fill="none" stroke="${col[k]}" stroke-width="3" stroke-linejoin="round" points="${pts.map((p) => p.join(',')).join(' ')}"/>`;
+      g += `<polyline class="ln" pathLength="1" fill="none" stroke="${col[k]}" stroke-width="3" stroke-linejoin="round" points="${pts.map((p) => p.join(',')).join(' ')}"/>`;
       g += pts.map((p) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${col[k]}"/>`).join('');
     }
-    g += weeks.map((w, i) => `<text x="${x(i)}" y="${H - 8}" font-size="11" fill="#8a948f" text-anchor="middle">${t('weeksAgo')(n - 1 - i)}</text>`).join('');
+    g += weeks.map((w, i) => `<text x="${x(i)}" y="${H - 8}" font-size="11" fill="#7c859c" text-anchor="middle">${t('weeksAgo')(n - 1 - i)}</text>`).join('');
     return `<svg viewBox="0 0 ${W} ${H}" width="100%" role="img" aria-label="${t('trend')}">${g}</svg>`;
   }
   const legend = () => `<div class="legend">${SK.map((k) => `<span><i style="background:var(--${k})"></i>${t('skills')[k]}</span>`).join('')}</div>`;
@@ -189,7 +189,7 @@
         <div class="card"><h3>${t('alerts')}</h3>
           <div class="alert bad">⚠️ ${t('weakAlert')(weakPct, t('skills')[s.weakSkill])}</div>
           ${inactive.length ? `<div class="alert">💤 ${t('inactive')(inactive.length, inactive.map((r) => esc(r.name)).join(', '))}</div>` : ''}
-          ${S.data.assignments.map((a) => { const tx = textById(a.textId); return tx ? `<div class="alert" style="background:#eef5f3">📌 ${esc(L(tx.title))}: ${a.done} ${t('of')} ${k.students} ${t('done')}${a.due ? ' · ' + t('due') + ' ' + a.due : ''}</div>` : ''; }).join('')}
+          ${S.data.assignments.map((a) => { const tx = textById(a.textId); return tx ? `<div class="alert" style="background:#e8edfb;border-left-color:#2340a8">📌 ${esc(L(tx.title))}: ${a.done} ${t('of')} ${k.students} ${t('done')}${a.due ? ' · ' + t('due') + ' ' + a.due : ''}</div>` : ''; }).join('')}
         </div>
       </div>`);
     const b = $('#aib'); if (b) b.onclick = async () => {
@@ -249,7 +249,7 @@
   }
   function packHtml(tx) {
     const ps = L(tx.paras) || [];
-    return `<div class="preview"><div class="card" style="background:#fffdf8">${ps.map((p, i) => `<p><b class="muted small">${i + 1}</b> ${p.map(([id, s]) => esc(s)).join(' ')}</p>`).join('')}</div>
+    return `<div class="preview"><div class="card" style="background:#fdfdfb">${ps.map((p, i) => `<p><b class="muted small">${i + 1}</b> ${p.map(([id, s]) => esc(s)).join(' ')}</p>`).join('')}</div>
       ${tx.questions.map((q, i) => { const sents = Object.fromEntries(ps.flat()); return `<div class="qitem"><span class="pill p-${q.skill}">${t('skills')[q.skill]}</span> <span class="small muted">${t('level')} ${q.level} · ${q.kind}</span>
         <div style="margin:6px 0;font-weight:700">${i + 1}. ${esc(L(q.prompt))}</div>
         ${q.kind === 'choice' ? `<ol type="A" style="margin:4px 0 4px 18px">${L(q.options).map((o, j) => `<li ${j === q.answer ? 'style="font-weight:700;color:var(--ok)"' : ''}>${esc(o)}${j === q.answer ? ' ✓' : ''}</li>`).join('')}</ol>` : ''}
